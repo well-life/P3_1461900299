@@ -53,15 +53,18 @@
                         <th>Aksi</th>
                     </tr>
                 </thead>
-                @foreach($siswa as $key => $sw)
+                @foreach($data_siswa as $key => $sw)
                 <tr>
                     <td>{{ $key+1 }}</td>
                     <td>{{ $sw->id }}</td>
                     <td>{{ $sw->nama }}</td>
                     <td>{{ $sw->alamat }}</td>
                     <td>
-                        <a href="/siswa/edit{{ $sw->id }}" class="btn btn-info">Edit</a>
-                        <a href="/siswa/delete{{ $sw->id }}" class="btn btn-danger">Delete</a>
+                        <a href="/siswa/{{ $sw->id }}/edit/"><button type = "submitclass" class = "btn btn-info">Edit</button></a>
+                        <form action="{{ route('siswa.destroy', $sw->id) }}" method="POST" class="inline-block">
+                        {!! method_field('delete') . csrf_field() !!}
+                        <button type="submit" class="btn btn-danger">Delete
+                        </button>
                     </td>
                 </tr>
                 @endforeach

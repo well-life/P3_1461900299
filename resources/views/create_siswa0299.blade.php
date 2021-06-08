@@ -17,7 +17,7 @@
     <div class="container">
         <div class="col-md-12">
             <div style="height: 15px;"></div>
-            <form action="/siswa/simpan" method="POST">
+            <form action="{{ route('siswa.store')}}" method="POST">
             @csrf
                 <div class="form-group">
                     <label for="inputNama">Nama</label>

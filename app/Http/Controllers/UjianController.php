@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -14,8 +15,8 @@ class UjianController extends Controller
      */
     public function index()
     {
-        $siswa = DB::table('siswa')->get();
-        return view('siswa0299' , ['siswa' => $siswa]);
+        $data_siswa = DB::table('siswa')->get();
+        return view('siswa0299')->with(compact('data_siswa'));
     }
     public function create()
     {
@@ -64,11 +65,10 @@ class UjianController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        print_r($id);exit;
-        $siswa = DB::table('siswa')->where('siswa',$id)->get();
-        return view('siswa_edit0299',['siswa' => $siswa]);
+    public function edit(Siswa $siswa)
+    {   
+        $siswa_edit = \App\Models\Siswa::findOrFail($id);
+        return view('siswa_edit0299', ['siswa' =>$siswa_edit]);
     }
 
     /**
@@ -78,21 +78,16 @@ class UjianController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Siswa $siswa)
     {
-        //
+        $data_siswa = $request->all();
+        $siswa->update($data_siswa);
+        return redirect()->route('siswa.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(Siswa $siswa)
     {
-        $sw = \App\Models\Siswa::findOrFail($id);
-        $sw->delete();
-        return redirect() ->route('/.index');
+        $siswa->delete();
+        return redirect() ->route('siswa.index');
     }
 }

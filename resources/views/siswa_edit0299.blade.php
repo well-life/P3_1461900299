@@ -16,9 +16,9 @@
 <body>
     <div class="container">
         <div class="col-md-12">
-            @foreach($siswa as $sw)
+            @foreach($data_siswa as $sw)
             <div style="height: 15px;"></div>
-            <form action="/siswa/simpan" method="POST">
+            <form action="{{ route('siswa.update', $sw->id) }}" method="POST">
             @csrf
                 <div class="form-group">
                     <label for="inputNama">Nama</label>

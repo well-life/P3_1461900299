@@ -67,8 +67,8 @@ class UjianController extends Controller
      */
     public function edit(Siswa $siswa)
     {   
-        $siswa_edit = \App\Models\Siswa::findOrFail($id);
-        return view('siswa_edit0299', ['siswa' =>$siswa_edit]);
+        // $siswa_edit = \App\Models\Siswa::findOrFail($id);
+        return view('siswa_edit0299', ['data_siswa' =>$siswa]);
     }
 
     /**

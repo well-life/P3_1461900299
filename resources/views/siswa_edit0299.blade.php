@@ -16,21 +16,20 @@
 <body>
     <div class="container">
         <div class="col-md-12">
-            @foreach($data_siswa as $sw)
             <div style="height: 15px;"></div>
-            <form action="{{ route('siswa.update', $sw->id) }}" method="POST">
+            <form action="{{ route('siswa.update', $data_siswa->id) }}" method="POST">
             @csrf
+            @method('put')
                 <div class="form-group">
                     <label for="inputNama">Nama</label>
-                    <input type="text" class="form-control" id="nama" name="nama" value="{{ $sw->nama }}" placeholder="Enter Nama">
+                    <input type="text" class="form-control" id="nama" name="nama" value="{{ $data_siswa->nama }}" placeholder="Enter Nama">
                 </div>
                 <div class="form-group">
                     <label for="inputAlamat">Alamat</label>
-                    <input type="text" class="form-control" id="alamat" name="alamat" value="{{ $sw->alamat }}" placeholder="Enter Alamat">
+                    <input type="text" class="form-control" id="alamat" name="alamat" value="{{ $data_siswa->alamat }}" placeholder="Enter Alamat">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
-            @endforeach
         </div>
     </div>
 

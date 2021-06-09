@@ -60,11 +60,12 @@
                     <td>{{ $sw->nama }}</td>
                     <td>{{ $sw->alamat }}</td>
                     <td>
-                        <a href="/siswa/{{ $sw->id }}/edit/"><button type = "submitclass" class = "btn btn-info">Edit</button></a>
-                        <form action="{{ route('siswa.destroy', $sw->id) }}" method="POST" class="inline-block">
+                        <a class = "btn btn-info" href="/siswa/{{ $sw->id }}/edit/">Edit</a>
+                        <form action="{{ route('siswa.destroy', $sw->id) }}" method="POST">
                         {!! method_field('delete') . csrf_field() !!}
                         <button type="submit" class="btn btn-danger">Delete
                         </button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach
